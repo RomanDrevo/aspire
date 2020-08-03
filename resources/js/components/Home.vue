@@ -23,7 +23,8 @@
         data() {
             return {
                 query: '',
-                selected: ''
+                selected: '',
+                items: []
             }
         },
         methods: {
