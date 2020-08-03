@@ -9,6 +9,10 @@
         </select>
 
         <button @click="submitQuery">Send</button>
+
+        <ul v-if="items.length > 0">
+            <li v-for="item in items" :key="item.id">{{item.name}}</li>
+        </ul>
     </div>
 
 
@@ -30,7 +34,7 @@
         methods: {
             submitQuery() {
                 axios.get(`http://127.0.0.1:8000/games?text=${this.query}&playmode=${this.selected}`)
-                    .then(res => console.log(res))
+                    .then(res => this.items = res.data.games)
             }
         }
     }

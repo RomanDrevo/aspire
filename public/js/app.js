@@ -1926,6 +1926,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
@@ -1938,8 +1942,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitQuery: function submitQuery() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/games?text=".concat(this.query, "&playmode=").concat(this.selected)).then(function (res) {
-        return console.log(res);
+        return _this.items = res.data.games;
       });
     }
   }
@@ -2485,7 +2491,17 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.submitQuery } }, [_vm._v("Send")])
+    _c("button", { on: { click: _vm.submitQuery } }, [_vm._v("Send")]),
+    _vm._v(" "),
+    _vm.items.length > 0
+      ? _c(
+          "ul",
+          _vm._l(_vm.items, function(item) {
+            return _c("li", { key: item.id }, [_vm._v(_vm._s(item.name))])
+          }),
+          0
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
